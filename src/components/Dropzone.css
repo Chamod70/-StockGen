@@ -1,0 +1,66 @@
+.dropzone {
+  border: 2px dashed var(--border-light);
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dropzone:hover, .dropzone.dragging {
+  border-color: var(--accent-primary);
+  background: rgba(0, 229, 255, 0.05);
+}
+
+.file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.dropzone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  pointer-events: none;
+}
+
+.icon-wrapper {
+  background: var(--bg-tertiary);
+  padding: 1.5rem;
+  border-radius: 50%;
+  box-shadow: var(--shadow-glass);
+  margin-bottom: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.dropzone:hover .icon-wrapper {
+  transform: scale(1.1);
+}
+
+.dropzone h3 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.dropzone p {
+  color: var(--text-secondary);
+}
+
+.supported-formats {
+  margin-top: 1rem;
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+}
+
+.supported-formats span {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
