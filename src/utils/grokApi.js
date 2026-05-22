@@ -34,7 +34,7 @@ export const generateMetadataWithGrok = async (apiKey, base64Image, filename, se
       ]
     : `Generate metadata for an image file named "${filename}". Note: This is a text-only model so you cannot see the image. Do your best to guess keywords, title, and category based purely on the filename.`;
 
-  const response = await fetch('/api/grok/v1/chat/completions', {
+  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

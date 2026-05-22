@@ -46,7 +46,7 @@ const ApiKeyManager = ({ onKeyChange, onModelChange }) => {
       
       setLoadingModels(true);
       try {
-        const res = await fetch('/api/grok/v1/models', {
+        const res = await fetch('https://api.groq.com/openai/v1/models', {
           headers: {
             'Authorization': `Bearer ${currentKey}`
           }

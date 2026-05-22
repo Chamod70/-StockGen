@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/grok/:path*",
+      "destination": "https://api.groq.com/openai/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
