@@ -4,9 +4,12 @@ export const generateMetadataWithGrok = async (apiKey, base64Image, filename, se
     ? ` MUST INCLUDE THESE EXACT KEYWORDS: ${config.includeKeywords}. ` 
     : '';
     
+  const targetTitleLen = config?.titleLength || 120;
+  const targetKeywordsCount = config?.keywordCount || 49;
+  
   const systemPrompt = `You are an expert Adobe Stock metadata creator. Analyze the image and generate a JSON object with:
-  - "title": A highly descriptive, search-optimized title. CRITICAL RULE: The title MUST be EXACTLY ${config?.titleLength || 120} characters long. You must add as many descriptive adjectives and details as possible to reach EXACTLY ${config?.titleLength || 120} characters. Do NOT make it shorter. Count your characters! Do NOT use commas.
-  - "keywords": A comma-separated string. CRITICAL RULE: You MUST provide EXACTLY ${config?.keywordCount || 49} keywords. Count them to ensure there are exactly ${config?.keywordCount || 49}. No duplicates, no technical data, no trademarks. ${includeKeywordsInstruction}${isVector ? 'Include: vector, illustration, editable, template, isolated.' : ''}
+  - "title": A highly descriptive, search-optimized title. CRITICAL RULE: The title MUST be extremely long, at least ${targetTitleLen + 60} characters! Describe every visible detail, colors, mood, lighting, and actions. Keep adding descriptive adjectives until it is very long. Do NOT use commas.
+  - "keywords": A comma-separated string of at least ${targetKeywordsCount + 25} keywords. CRITICAL RULE: You MUST provide at least ${targetKeywordsCount + 25} keywords! Brainstorm every possible related concept, object, color, emotion, and background element. No duplicates, no technical data. ${includeKeywordsInstruction}${isVector ? 'Include: vector, illustration, editable, template, isolated.' : ''}
   - "category": A single number representing the most appropriate Adobe Stock category from this list:
     1 Animals, 2 Buildings and Architecture, 3 Business, 4 Drinks, 5 The Environment, 6 States of Mind, 7 Food, 8 Graphic Resources, 9 Hobbies and Leisure, 10 Industry, 11 Landscape, 12 Lifestyle, 13 People, 14 Plants and Flowers, 15 Culture and Religion, 16 Science, 17 Social Issues, 18 Sports, 19 Technology, 20 Transport, 21 Travel
   - "confidence": A number from 0-100 indicating how confident you are in the category selection.
