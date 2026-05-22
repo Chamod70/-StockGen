@@ -78,6 +78,11 @@ function App() {
           return next;
         });
       }
+      
+      // Delay for 2.5 seconds between requests to avoid Groq API rate limits
+      if (i < items.length - 1) {
+        await new Promise(resolve => setTimeout(resolve, 2500));
+      }
     }
     
     setIsGenerating(false);
